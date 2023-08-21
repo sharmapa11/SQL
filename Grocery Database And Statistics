@@ -1,0 +1,24 @@
+-- Create a grocery store database
+
+CREATE TABLE grocery (id INTEGER PRIMARY KEY, item TEXT, aisle INTEGER, price INTEGER, percent_rem INTEGER);
+
+INSERT INTO grocery VALUES (1, "apple", 1, .50, 59);
+INSERT INTO grocery VALUES (2, "rambuttan", 1, 3.00, 86);
+INSERT INTO grocery VALUES (3, "kiwi", 1, 2.50, 75);
+INSERT INTO grocery VALUES (4, "olive_oil", 5, 12.99,  33);
+INSERT INTO grocery VALUES (5, "chocolate", 6, 4.50, 45);
+INSERT INTO grocery VALUES (6, "chips", 8, 3.99, 51);
+INSERT INTO grocery VALUES (7, "ice cream", 12, 4.50, 12);
+INSERT INTO grocery VALUES (8, "milk", 13, 4.31, 25);
+INSERT INTO grocery VALUES (9, "yogurt", 13, 4.29, 39);
+INSERT INTO grocery VALUES (10, "cheddar_cheese", 14, 5.20, 45);
+
+-- Display the database ordered by price
+SELECT * FROM grocery ORDER BY price;
+
+-- Average price of items in aisle 1 (produce)
+SELECT AVG(price) FROM grocery WHERE aisle = 1;
+
+-- Top 3 items that needed to be re-ordered the soonest
+SELECT * FROM grocery ORDER by percent_rem LIMIT 3;
+

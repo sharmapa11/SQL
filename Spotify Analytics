@@ -1,0 +1,62 @@
+# For this project, I downloaded Spotify data from Kaggle, then created a table to insert Spotify data into. Finally, I performed analytics on the data using SQL.
+
+#Creating the table:
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL )
+
+#Then I inserted the Spotify Data .csv into the table and answered questions that I had about the data using SQL.
+
+/* 1. Which artist(s) have 3 or more songs in the top 50 and how many songs do they have?
+
+SELECT artist_name, count(track_name) AS number_of_songs
+FROM Spotifydata
+GROUP BY artist_name
+HAVING number_of_songs >=3;
+
+/* 2. Which 5 songs have the fastest tempo?
+
+SELECT track_name, tempo
+FROM Spotifydata
+ORDER BY tempo DESC
+LIMIT 5;
+
+/* 3. Who are the top 10 artists based on popularity of their most popular song? 
+
+SELECT artist_name, popularity
+FROM Spotifydata
+GROUP BY artist_name
+ORDER BY popularity DESC
+LIMIT 10;
+
+/* 4. What artist released the longest song? 
+
+SELECT artist_name, MAX(duration_ms)
+FROM Spotifydata;
+
+/* 5. What's the average danceability for the 10 most popular songs?
+
+SELECT AVG(danceability)
+FROM Spotifydata
+ORDER BY popularity;
+
+/* 6. Which song has the most energy?
+ 
+SELECT track_name, MAX (energy)
+FROM Spotifydata;
